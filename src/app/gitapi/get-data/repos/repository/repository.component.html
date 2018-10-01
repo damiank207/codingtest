@@ -1,0 +1,51 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{repository.name}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p>
+    Language: {{repository.language}}
+  </p>
+  <p class="flex-inline-center">
+    Link to repository: &nbsp; <a class="flex-inline-center" [href]="repository.html_url" target="_blank">
+      {{repository.html_url}}
+      <mat-icon>open_in_new</mat-icon>
+    </a>
+  </p>
+
+  <mat-accordion>
+
+    <mat-expansion-panel (opened)="commitsOpened()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Commits
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-loading-bar *ngIf="commitsLoading; else commitsLoaded"></app-loading-bar>
+      <ng-template #commitsLoaded>
+        <app-commits *ngIf="!commitsLoadingError" [commits]="commitsResponse"></app-commits>
+        <div *ngIf="commitsLoadingError">
+          Error {{releasesResponse['status']}} occurred: {{releasesResponse['statusText']}}
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="releasesOpened()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Releases
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-loading-bar *ngIf="releasesLoading; else releasesLoaded"></app-loading-bar>
+      <ng-template #releasesLoaded>
+        <app-releases *ngIf="!releasesLoadingError" [releases]="releasesResponse"></app-releases>
+        <div *ngIf="releasesLoadingError">
+          Error {{releasesResponse['status']}} occurred: {{releasesResponse['statusText']}}
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</mat-expansion-panel>

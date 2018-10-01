@@ -1,0 +1,17 @@
+
+<div *ngIf="!loading">
+  <div *ngIf="!isError">
+    <div *ngIf="response.length > 0">
+      <mat-accordion>
+          <app-repository *ngFor="let element of response" [repository]="element"></app-repository>
+      </mat-accordion>
+    </div>
+  </div>
+  <div *ngIf="isError">
+    Error {{response.status}} occurred: {{response.statusText}}
+  </div>
+</div>
+
+<div *ngIf="loading">
+  <app-loading-bar></app-loading-bar>
+</div>

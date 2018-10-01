@@ -1,0 +1,19 @@
+
+<div *ngIf="!loading">
+  <div *ngIf="!isError">
+    <p>Organization Name: {{response.name}}</p>
+    <div *ngIf="response.has_repository_projects; else no_projects">
+      <app-repos [reposUrl]="response.repos_url"></app-repos>
+    </div>
+    <ng-template #no_projects>
+      This organization have no projects
+    </ng-template>
+  </div>
+  <div *ngIf="isError">
+    Error {{response.status}} occurred: {{response.statusText}}
+  </div>
+</div>
+
+<div *ngIf="loading">
+  <app-loading-bar></app-loading-bar>
+</div>

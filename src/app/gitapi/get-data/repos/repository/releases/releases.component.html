@@ -1,0 +1,6 @@
+<mat-accordion>
+  <app-release *ngFor="let release of releases" [release]="release"></app-release>
+  <div *ngIf="releases.length == 0">
+    <i>Empty</i>
+  </div>
+</mat-accordion>

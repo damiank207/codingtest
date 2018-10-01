@@ -1,0 +1,21 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{release.name}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p>
+    Tag: {{release.tag_name}}
+  </p>
+  <p class="flex-inline-center">
+    Author: <img [src]="release.author?.avatar_url" [alt]="'Author Avatar' + release.author ? '' : ' is unavailable'">
+    {{release.author.login}}
+  </p>
+  <p>Publish Date: {{release.published_at | date:'medium'}}</p>
+  <p class="flex-inline-center"> Link: &nbsp;
+    <a class="flex-inline-center" [href]="release.html_url" target="_blank">
+      {{release.html_url}}
+      <mat-icon>open_in_new</mat-icon>
+    </a>
+  </p>
+</mat-expansion-panel>

@@ -1,0 +1,13 @@
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{commit.commit.committer.date | date:'medium'}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p class="flex-inline-center">
+    Commiter: <img [src]="commit.committer?.avatar_url" [alt]="'Commiter Avatar' + commit.committer ? '' : ' is unavailable'"> {{commit.commit.committer.name}}
+
+  </p>
+  <p class="wrap">Commit message: <i>{{commit.commit.message}}</i></p>
+</mat-expansion-panel>

@@ -1,0 +1,6 @@
+<mat-accordion>
+  <app-commit *ngFor="let commit of commits" [commit]="commit"></app-commit>
+  <div *ngIf="commits.length == 0">
+    <i>Empty</i>
+  </div>
+</mat-accordion>
